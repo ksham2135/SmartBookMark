@@ -4,7 +4,9 @@ import { useCallback, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createSupabaseBrowserClient } from "@/lib/supabaseClient";
 
-export default function LoginPage() {
+import { Suspense } from "react";
+
+function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
@@ -68,6 +70,16 @@ export default function LoginPage() {
         OAuth only. No passwords are stored. Your bookmarks are private and
         scoped to your account.
       </p>
+    </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <div className="flex min-h-screen items-center justify-center">
+      <Suspense fallback={<div className="text-slate-400">Loading...</div>}>
+        <LoginForm />
+      </Suspense>
     </div>
   );
 }
