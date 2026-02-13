@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import type { SupabaseClient } from "@supabase/supabase-js";
+import { createSupabaseBrowserClient } from "@/lib/supabaseClient";
 
 type Bookmark = {
   id: string;
@@ -18,8 +17,7 @@ type BookmarkListProps = {
 };
 
 export default function BookmarkList({ userId, initialBookmarks }: BookmarkListProps) {
-  // Standard usage - createClientComponentClient is a singleton helper
-  const supabase = createClientComponentClient();
+  const supabase = createSupabaseBrowserClient();
   const [bookmarks, setBookmarks] = useState<Bookmark[]>(initialBookmarks);
   const [isConnected, setIsConnected] = useState(false);
   // const [debugStatus, setDebugStatus] = useState<string>("INITIAL");

@@ -1,12 +1,12 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { createSupabaseBrowserClient } from "@/lib/supabaseClient";
 
 export default function LoginForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const redirectedFrom = searchParams.get("redirectedFrom") ?? "";
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -16,7 +16,7 @@ export default function LoginForm() {
       setError(null);
 
       const supabase = createSupabaseBrowserClient();
-      const redirectPath = searchParams.get("redirectedFrom") || "/dashboard";
+      const redirectPath = redirectedFrom || "/dashboard";
 
       const origin =
         typeof window !== "undefined" ? window.location.origin : "";
@@ -38,7 +38,7 @@ export default function LoginForm() {
       setError(e?.message ?? "Unexpected error during sign-in.");
       setLoading(false);
     }
-  }, [searchParams]);
+  }, [redirectedFrom]);
 
   return (
     <div className="w-full max-w-md rounded-2xl bg-slate-900/70 p-8 shadow-xl ring-1 ring-slate-800">
