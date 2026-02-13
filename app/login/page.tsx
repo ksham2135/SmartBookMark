@@ -4,6 +4,8 @@ import { useCallback, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createSupabaseBrowserClient } from "@/lib/supabaseClient";
 
+export const dynamic = "force-dynamic";
+
 import { Suspense } from "react";
 
 function LoginForm() {
