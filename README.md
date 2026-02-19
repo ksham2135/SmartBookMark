@@ -2,6 +2,8 @@
 
 A modern, real-time bookmark manager built with Next.js 14 and Supabase. Store your favorite links privately, sync instantly across devices, and manage everything with a clean, dark-themed interface.
 
+Live Demo: Check out the deployed project here – https://smart-book-mark-sigma.vercel.app/
+
 ![Login Page](docs/screenshots/login.png)
 
 ---
